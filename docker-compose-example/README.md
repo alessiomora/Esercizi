@@ -2,7 +2,7 @@ Step 1: Define the application dependencies
 Create a directory for the project
 
 Step 2: Create a file called app.py in your project directory and paste the following code in:
-
+```
 import time
 
 import redis
@@ -26,7 +26,7 @@ def get_hit_count():
 def hello():
     count = get_hit_count()
     return 'Hello World! I have been seen {} times.\n'.format(count)
-
+```
 
 In this example, redis is the hostname of 
 the redis container on the application's network. We use the default port for Redis, 6379.
@@ -36,7 +36,7 @@ flask
 redis
 
 Step 4: Create a Dockerfile
-
+```
 # syntax=docker/dockerfile:1
 FROM python:3.10-alpine
 WORKDIR /code
@@ -48,7 +48,7 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
 CMD ["flask", "run"]
-
+```
 This tells Docker to:
 Build an image starting with the Python 3.10 image.
 Set the working directory to /code.
@@ -63,7 +63,7 @@ Step 3: Define services in a Compose file
 
 Create a file called compose.yaml in your project directory and paste the following:
 
-
+```
 services:
   web:
     build: .
@@ -71,7 +71,7 @@ services:
       - "8000:5000"
   redis:
     image: "redis:alpine"
-
+```
 This Compose file defines two services: web and redis.
 
 The web service uses an image that's built from the Dockerfile in the current directory. It then binds the container and the host machine to the exposed port, 8000. This example service uses the default port for the Flask web server, 5000.
@@ -109,7 +109,7 @@ directory in the second terminal, or by hitting CTRL+C in the original terminal 
 Step 5: Edit the Compose file to add a bind mount
 Edit the compose.yaml file in your project directory to add a bind mount for the web service:
 
-
+```
 services:
   web:
     build: .
@@ -121,7 +121,7 @@ services:
       FLASK_DEBUG: "true"
   redis:
     image: "redis:alpine"
-
+```
     
 The new volumes key mounts the project directory (current directory)
  on the host to /code inside the container, allowing you to modify the code 
@@ -140,6 +140,4 @@ Change the greeting in app.py and save it. For example, change the Hello World! 
 Step 8: Experiment with some other commands
 If you want to run your services in the background, you can pass the -d flag (for "detached" mode) to docker compose up and use docker compose ps to see what is currently running:
 
-
-
- https://docs.docker.com/compose/gettingstarted/#step-5-edit-the-compose-file-to-add-a-bind-mount
+Full example at: https://docs.docker.com/compose/gettingstarted/#step-5-edit-the-compose-file-to-add-a-bind-mount
