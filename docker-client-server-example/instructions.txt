@@ -1,0 +1,92 @@
+Certainly! Below are simple examples of a client and server application using FastAPI along with their
+ respective Dockerfiles.
+ 
+First, let's create a simple FastAPI server.
+ 
+### Server (FastAPI)
+ 
+Create a file named `main.py`:
+ 
+```python
+from fastapi import FastAPI
+ 
+app = FastAPI()
+ 
+@app.get("/")
+async def read_root():
+    return {"message": "Hello, World"}
+```
+ 
+### Dockerfile for Server
+ 
+Create a file named `Dockerfile_server`:
+ 
+```Dockerfile
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9
+ 
+COPY ./main.py /app/main.py
+ 
+WORKDIR /app
+ 
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+```
+ 
+### Client (FastAPI)
+ 
+Create a file named `client.py`:
+ 
+```python
+import requests
+ 
+url = "http://server:80/"
+ 
+response = requests.get(url)
+print(response.json())
+```
+ 
+### Dockerfile for Client
+ 
+Create a file named `Dockerfile_client`:
+ 
+```Dockerfile
+FROM python:3.9
+ 
+COPY ./client.py /app/client.py
+ 
+WORKDIR /app
+ 
+CMD ["python", "client.py"]
+```
+ 
+### Docker Compose
+ 
+Now, let's create a `docker-compose.yml` file to run both the server and client together:
+ 
+```yaml
+version: "3"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile_server
+    ports:
+      - "80:80"
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile_client
+```
+ 
+### Building and Running
+ 
+1. Place all these files (`main.py`, `Dockerfile_server`, `client.py`, `Dockerfile_client`, and `docker-compose.yml`) in the same directory.
+ 
+2. Open a terminal in that directory and run:
+ 
+```bash
+docker-compose up --build
+```
+ 
+This command will build the Docker images for both the server and the client, and then start both containers. The client will make a request to the server and print the response.
+ 
+Make sure to have Docker and Docker Compose installed on your system.
