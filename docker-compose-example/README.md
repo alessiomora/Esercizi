@@ -2,6 +2,7 @@ Step 1: Define the application dependencies
 Create a directory for the project
 
 Step 2: Create a file called app.py in your project directory and paste the following code in:
+
 ```
 import time
 
