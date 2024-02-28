@@ -1,4 +1,4 @@
-## Esercizio: Fare build dell'immagine per un'applicazione python
+## Esercizio: build dell'immagine e run di un container per un'applicazione python
 
 Si vuole creare una immagine Docker per poi mettere in esecuzione un container che lanci il codice contenuto in main.py.
 
