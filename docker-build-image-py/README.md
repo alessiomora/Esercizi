@@ -9,7 +9,7 @@ I requisiti della nostra app (main.py) sono di avere bisogno di
 python versione 3.10 e di avere installato numpy versione 1.26.4.
 
 Step:
-1. Scrivere il Dockerfile necessario per fare la build dell'immagine, facendo attenzione ai requisiti sopra.
+1. Scrivere il Dockerfile necessario per fare la build dell'immagine, facendo attenzione ai requisiti sopra. Eventualmente, occuparsi di riempire secondo i requisiti il file ```requirements.txt```.
 
 2. Eseguire il comando per creare l'immagine del container (```docker build```).
 
