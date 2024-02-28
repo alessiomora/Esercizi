@@ -14,4 +14,8 @@ Step:
 2. Eseguire il comando per creare l'immagine del container (```docker build```).
 
 3. Mettere in esecuzione il container. Quale numero ha estratto
-il main.py?
+il ```main.py```?
+
+4. Fare push dell'immagine appena creata sul registry ufficale Docker Hub.
+
+5. Inviarmi via mail (alessio.mora@unibo.it) il nome della vostra immagine docker dell'esercizio che posso trovare su DockerHub (https://hub.docker.com/).
