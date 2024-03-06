@@ -13,6 +13,7 @@ e pymongo versione 4.1.1.
 
 Step 1. Scrivere il Dockerfile per il backend.
 Step 2. Scrivere il docker-compose.yml. Domande: quanti servizi (services) avremo? (leggere anche dopo)
+
 Step 2a. Scrivere lo scheletro del docker-compose.yml. Ogni servizio deve ovviamente prevedere una build o il caricamento di una base image ufficiale. Oltre a tali direttive, leggere di seguito e aggiungere.
 Step 2b. Nel docker-compose, per il servizio backend, prevedere le seguenti direttive:
 ```
@@ -39,7 +40,11 @@ Step 2d. Se si è previsto un servizio per il DB, inserire nei suoi attributi ne
       - 27017:27017
 ```
 Step 3. Invocare il comando ```docker compose up```.
+
 Step 4. Invocare il comando ```docker ps```. Quali container/servizi sono running?
+
 Step 5. Tramite il browser visitare la pagina localhost:5000. Cosa succede? Chi sta rispondendo?
+
 Step 6. Tramite il browser visitare la pagina localhost:5000/animals. Cosa succede? Chi sta rispondendo? Analizzare il file ```app.py```.
+
 Step 7. Trovare il modo di aggiungere un nuovo animale alla lista di quelli visualizzati allo step precedente.
