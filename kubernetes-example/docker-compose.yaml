@@ -1,0 +1,7 @@
+services:
+  myapp:
+    container_name: myapp
+    image: myapp:1.0.0
+    build: .
+    ports:
+      - 3000:3000
