@@ -12,6 +12,7 @@ e pymongo versione 4.1.1.
 * Per il servizio DB, l'immagine ufficiale mongo:latest può fare al caso nostro.
 
 Step 1. Scrivere il Dockerfile per il backend.
+
 Step 2. Scrivere il docker-compose.yml. Domande: quanti servizi (services) avremo? (leggere anche dopo)
 
 Step 2a. Scrivere lo scheletro del docker-compose.yml. Ogni servizio deve ovviamente prevedere una build o il caricamento di una base image ufficiale. Oltre a tali direttive, leggere di seguito e aggiungere.
