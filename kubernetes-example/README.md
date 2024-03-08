@@ -1,12 +1,10 @@
 ## Example Kubernetes 
 
 1. Create a new project
-npm init -y
+```npm init -y```
 2. Install the dependencies
-npm i express
+```npm i express```
 3. Create a new file called index.js
-touch index.js
-project structure
 
 Let's create a simple Express server that listens on port 3000 and returns a response.
 ```
