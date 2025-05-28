@@ -1,0 +1,18 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      
+  node-client:
+    build:
+      context: ./node-client
+      dockerfile: Dockerfile
+
+  java-client:
+    build: ./java-client
+    depends_on:
+      - server

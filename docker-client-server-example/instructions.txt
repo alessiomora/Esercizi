@@ -1,5 +1,4 @@
-Certainly! Below are simple examples of a client and server application using FastAPI along with their
- respective Dockerfiles.
+Below are simple examples of a client and server application using FastAPI along with their respective Dockerfiles.
  
 First, let's create a simple FastAPI server.
  

@@ -17,6 +17,10 @@ def get_db():
 def ping_server():
     return "Welcome to the world of animals."
 
+@app.route('/saluti')
+def saluti_func():
+    return "Ciao"
+
 @app.route('/animals')
 def get_stored_animals():
     db = get_db()

@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
   db:
-    image: mongo:latest
+    image: mongo:4.4.6
     hostname: test_mongodb
     environment:
       - MONGO_INITDB_DATABASE=animal_db
