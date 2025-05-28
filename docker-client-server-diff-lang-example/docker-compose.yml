@@ -1,0 +1,12 @@
+version: "3"
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+  client:
+    build:
+      context: ./node-client
+      dockerfile: Dockerfile
