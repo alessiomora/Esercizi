@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyApp</title>
+</head>
+<body>
+  <h1>Frontend</h1>
+
+  <button onclick="fetchData()">Get Data</button>
+  <p id="content"></p>
+
+  <h2>Add New Message</h2>
+  <input type="text" id="newMessage" placeholder="Type a message..." />
+  <button onclick="addData()">Add Message</button>
+  <p id="addStatus"></p>
+
+  <script>
+    function fetchData() {
+    fetch("/api/data")
+      .then(res => res.json())
+      .then(data => {
+        const contentEl = document.getElementById("content");
+        contentEl.innerHTML = "";  // pulisci
+
+        // Controlla che ci siano messaggi
+        if (Array.isArray(data.messages)) {
+          data.messages.forEach(msg => {
+            const p = document.createElement("p");
+            p.textContent = msg;
+            contentEl.appendChild(p);
+          });
+        } else {
+          contentEl.textContent = "Nessun messaggio.";
+        }
+      })
+      .catch(err => {
+        console.error("Errore nella fetch:", err);
+      });
+  }
+
+    function addData() {
+      const message = document.getElementById("newMessage").value;
+      fetch("/api/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: message })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("addStatus").textContent = "Message added: " + data.message;
+        document.getElementById("newMessage").value = ""; // clear input
+      })
+      .catch(err => {
+        console.error("Errore nella POST:", err);
+        document.getElementById("addStatus").textContent = "Error adding message.";
+      });
+    }
+  </script>
+</body>
+</html>

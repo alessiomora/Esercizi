@@ -1,6 +1,6 @@
 ## Esercizio docker compose: Applicazione Backend + DB
 
-Si vuole creare containerizzare una applicazione che comprende un backend, che offre API RESTful, e un DB (MongoDB).
+Si vuole containerizzare una applicazione che comprende un backend, che offre API RESTful, e un DB (MongoDB).
 
 Informazioni:
 * Il codice del backend si trova in app.py.
