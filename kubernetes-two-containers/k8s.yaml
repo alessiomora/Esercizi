@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: two-containers-demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-svc
+  namespace: two-containers-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-svc
+  template:
+    metadata:
+      labels:
+        app: flask-svc
+    spec:
+      containers:
+        - name: flask
+          image: alessiomora/app-2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-svc
+  namespace: two-containers-demo
+spec:
+  selector:
+    app: flask-svc
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curl-client
+  namespace: two-containers-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curl-client
+  template:
+    metadata:
+      labels:
+        app: curl-client
+    spec:
+      containers:
+        - name: curl
+          image: curlimages/curl
+          command:
+            - sh
+            - -c
+            - |
+              while true; do
+                echo '---'; date
+                curl -sS http://flask-svc:80/
+                sleep 5
+              done
